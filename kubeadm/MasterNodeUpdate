@@ -20,18 +20,18 @@ Note: Open Required Ports In AWS Security Groups. For now we will open All trafi
 
 ==========COMMON FOR MASTER & SLAVES START ====
 
-1) Switch to root user
+#1) Switch to root user
    
 sudo su -
 
 
-2) Disable swap & add kernel settings
+#2) Disable swap & add kernel settings
 
 swap off -a
 sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 
 
-3) Add  kernel settings & Enable IP tables(CNI Prerequisites)
+#3) Add  kernel settings & Enable IP tables(CNI Prerequisites)
 
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
 overlay
@@ -53,7 +53,7 @@ EOF
 
 sysctl --system
 
-4) Install containerd run time
+#4) Install containerd run time
 
 #To install containerd, first install its dependencies.
 
@@ -62,7 +62,7 @@ apt-get install ca-certificates curl gnupg lsb-release -y
 
 
 
-Note: We are not installing Docker Here.Since containerd.io package is part of docker apt repositories hence we added docker repository & it's key to download and install containerd.
+#Note: We are not installing Docker Here.Since containerd.io package is part of docker apt repositories hence we added docker repository & it's key to download and install containerd.
 
 
 # Add Docker’s official GPG key:
@@ -83,8 +83,8 @@ apt-get install containerd.io -y
 
 # Generate default configuration file for containerd
 
-Note: Containerd uses a configuration file located in /etc/containerd/config.toml for specifying daemon level options.
-The default configuration can be generated via below command.
+#Note: Containerd uses a configuration file located in /etc/containerd/config.toml for specifying daemon level options.
+#The default configuration can be generated via below command.
 
 containerd config default > /etc/containerd/config.toml
 
@@ -98,7 +98,7 @@ systemctl restart containerd
 systemctl enable containerd
 
 
-5) Installing kubeadm, kubelet and kubectl 
+#5) Installing kubeadm, kubelet and kubectl 
 
 # Update the apt package index and install packages needed to use the Kubernetes apt repository:
 
