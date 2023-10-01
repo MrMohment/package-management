@@ -3,7 +3,6 @@
 # Installation of Java
 sudo apt update   # Update the repositories
 sudo apt install openjdk-11-jdk
-java -version
 # Install Jenkins
 sudo wget -O /etc/yum.repos.d/jenkins.repo \
     https://pkg.jenkins.io/redhat-stable/jenkins.repo
